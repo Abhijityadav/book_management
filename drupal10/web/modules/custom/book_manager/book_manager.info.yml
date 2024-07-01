@@ -1,0 +1,7 @@
+name: 'Books Management'
+type: module
+description: 'Defines a custom content type named "Book Manager".'
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - node

@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function book_manager_install() {
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  // Create the "Book" content type programmatically.
+  $book_type = $entity_type_manager->getDefinition('book');
+  if (!$book_type->hasField('title')) {
+    $book_field_storage_definition = $entity_type_manager->getStorage('field_config')->create([
+      'entity_type' => 'book',
+      'bundle' => 'book',
+      'field_name' => 'title',
+      'type' => 'string',
+      'label' => 'Title',
+      'settings' => [
+        'required' => TRUE,
+      ],
+    ]);
+    $book_field_storage_definition->save();
+  }
+
+  if (!$book_type->hasField('author')) {
+    $book_field_storage_definition = $entity_type_manager->getStorage('field_config')->create([
+      'entity_type' => 'book',
+      'bundle' => 'book',
+      'field_name' => 'author',
+      'type' => 'string',
+      'label' => 'Author',
+      'settings' => [
+        'required' => TRUE,
+      ],
+    ]);
+    $book_field_storage_definition->save();
+  }
+
+  if (!$book_type->hasField('publication_year')) {
+    $book_field_storage_definition = $entity_type_manager->getStorage('field_config')->create([
+      'entity_type' => 'book',
+      'bundle' => 'book',
+      'field_name' => 'publication_year',
+      'type' => 'integer',
+      'label' => 'Publication Year',
+      'settings' => [
+        'required' => TRUE,
+      ],
+    ]);
+    $book_field_storage_definition->save();
+  }
+}
